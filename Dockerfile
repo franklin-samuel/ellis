@@ -4,16 +4,13 @@ FROM python:3.13.5-alpine3.22
 # Define a pasta de trabalho no container
 WORKDIR /app
 
-# Instala dependências do sistema necessárias
-RUN apk add --no-cache gcc musl-dev libffi-dev build-base
-
-# Copia os arquivos de dependências, se existirem
+# Copia os arquivos de dependências
 COPY requirements.txt .
 
 # Instala as dependências do Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o restante do código para dentro do container
+# Copia o restante do código da aplicação
 COPY . .
 
 # Expõe a porta usada pela aplicação FastAPI
